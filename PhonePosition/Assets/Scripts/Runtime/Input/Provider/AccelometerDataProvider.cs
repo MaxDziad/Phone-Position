@@ -11,7 +11,7 @@ namespace Runtime.InputData
 
         protected override void UpdateData()
         {
-            _data = UnityEngine.Input.acceleration;
-}
+            _data = Input.acceleration;
+        }
     }
 }

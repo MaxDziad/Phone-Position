@@ -13,6 +13,8 @@ namespace Runtime.InputData
         protected TData _data;
         private float _currentTime;
 
+        public TData Data => _data;
+
         protected abstract string GetConvertedData();
         protected abstract void UpdateData();
 

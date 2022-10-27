@@ -379,7 +379,7 @@ MonoBehaviour:
   _textSetter: {fileID: 1110194049}
   _timeTreshold: 0.2
   _gyroscopeDataProvider: {fileID: 2132207643}
-  _accelometerDataProvider: {fileID: 1905308263}
+  _accelerometerDataProvider: {fileID: 1905308263}
 --- !u!1 &429999608
 GameObject:
   m_ObjectHideFlags: 0

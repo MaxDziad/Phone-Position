@@ -71,6 +71,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-.idea
-/ml-models/output_data/downsampled_output/*
-/ml-models/output_data/original_output/*
+PhonePosition/.idea
+PhonePosition/ml-models/output_data/downsampled_output/*
+PhonePosition/ml-models/output_data/original_output/*

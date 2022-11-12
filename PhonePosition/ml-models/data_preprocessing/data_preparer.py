@@ -31,7 +31,7 @@ class DataPreparer:
         output_lines = self.__generate_data_from_labels(all_files)
         return self.__write_output_csv(output_lines)
 
-    def __generate_file_list(self) -> dict[str]:
+    def __generate_file_list(self):
         all_files = {}
         for filename in os.listdir(self.__original_input_directory_path):
             name, file_extension = os.path.splitext(filename)
@@ -39,7 +39,7 @@ class DataPreparer:
                 all_files[name] = open(self.__original_input_directory_path + filename, 'r').read().splitlines()
         return all_files
 
-    def __generate_data_from_labels(self, all_files: dict[str]) -> list[str]:
+    def __generate_data_from_labels(self, all_files):
         all_lines = list()
         for line in open(self.__original_input_directory_path + self.__LABELS + self.__FINAL_SUFFIX, "r")\
                 .read().splitlines():
@@ -66,7 +66,7 @@ class DataPreparer:
     def __generate_file_name(self, prefix, experiment_number_id, user_number_id):
         return prefix + experiment_number_id + self.__USER_SUFFIX + user_number_id
 
-    def __generate_lines(self, acc_lines: list[str], gyro_lines: list[str], activity_number_id: str) -> list[str]:
+    def __generate_lines(self, acc_lines, gyro_lines, activity_number_id):
         lines = []
         actual_gyro_lines = []
         actual_acc_lines = []
@@ -86,7 +86,7 @@ class DataPreparer:
                 actual_acc_lines = []
         return lines
 
-    def __write_output_csv(self, all_lines: list[str]):
+    def __write_output_csv(self, all_lines):
         output_path = self.__output_directory_path + f"output_samples_{self.__samples_in_vector}.csv"
         with open(output_path, "w+") as outfile:
             outfile.write("\n".join(all_lines))

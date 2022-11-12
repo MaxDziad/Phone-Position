@@ -1,6 +1,7 @@
 from keras import Sequential
 from keras.layers import Dense, Dropout
 from numpy import loadtxt, ndarray
+from tensorflow.python.keras.saving.save import load_model
 
 
 class ModelCreator:
@@ -22,9 +23,10 @@ class ModelCreator:
         model.add(Dense(units=self.__classes_number + 1, kernel_initializer='normal', activation='softmax'))
         model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
         model.fit(values, labels, batch_size=120, epochs=30)
-        model.save(self.__output_model_path + f"model_{self.__samples_in_vector}_samples")
+        model.save(self.__output_model_path + f"model_{self.__samples_in_vector}_samples.h5")
+        # self.__transform_model_into_unity_format(self.__output_model_path + f"model_{self.__samples_in_vector}_samples.h5")
 
-    def __load_data(self, path: str) -> tuple[ndarray, ndarray, ndarray]:
+    def __load_data(self, path: str):
         dataset = loadtxt(path, delimiter=',')
         columns_number = 6 * self.__samples_in_vector
         x = dataset[:, 0:columns_number]

@@ -17,7 +17,7 @@ class DataDownsampler:
         else:
             self.__class_numbers_range = 12
 
-    def create_csv_downsampled_data_file(self) -> tuple[str, int]:
+    def create_csv_downsampled_data_file(self):
         dataset, values, labels = self.__load_data(self.__original_output_file_path)
         row_list, smallest_set_size = self.__get_smallest_set_size(dataset)
         dataset_downsampled = self.__downsample_classes(row_list, smallest_set_size)
@@ -26,14 +26,14 @@ class DataDownsampler:
         self.__plot_histograms(labels, downsampled_labels)
         return output_path, self.__class_numbers_range
 
-    def __load_data(self, path: str) -> tuple[ndarray, ndarray, ndarray]:
+    def __load_data(self, path: str):
         dataset = loadtxt(path, delimiter=',')
         columns_number = 6 * self.__samples_in_vector
         x = dataset[:, 0:columns_number]
         y = dataset[:, columns_number]
         return dataset, x, y
 
-    def __get_smallest_set_size(self, dataset: ndarray) -> tuple[list[ndarray], int]:
+    def __get_smallest_set_size(self, dataset: ndarray):
         row_list = []
         smallest_set_size = 100000000000000000
         for i in range(self.__class_numbers_range + 1):
@@ -44,7 +44,7 @@ class DataDownsampler:
                 row_list.append(rows)
         return row_list, smallest_set_size
 
-    def __downsample_classes(self, row_list: list[ndarray], smallest_set_size: int) -> list[ndarray]:
+    def __downsample_classes(self, row_list, smallest_set_size: int):
         list_downsampled = []
         for row in row_list:
             if self.__equalise_sets:
@@ -54,7 +54,7 @@ class DataDownsampler:
                 list_downsampled.extend(row)
         return list_downsampled
 
-    def __save_downsampled_data(self, downsampled_set: list[ndarray]) -> str:
+    def __save_downsampled_data(self, downsampled_set) -> str:
         output_path = self.__output_directory_path + f"output_downsampled_{self.__samples_in_vector}.csv"
         np.savetxt(output_path, downsampled_set, delimiter=",")
         return output_path

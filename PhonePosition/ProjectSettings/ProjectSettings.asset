@@ -702,7 +702,10 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: ENABLE_TENSORFLOW
+    Server: ENABLE_TENSORFLOW
+    Standalone: ENABLE_TENSORFLOW
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

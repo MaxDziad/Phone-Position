@@ -19,9 +19,13 @@ public class CurrentActionDataProvider : AbstractInputDataProvider<string>
     private List<Vector3> _bufforedAccelometerData = new();
     private List<Quaternion> _bufforedGyroscopeData = new();
 
+    private readonly TensorShape _tensorShape = new TensorShape(1, 1, 150, 1);
     private Model _runtimeModel;
     private IWorker _worker;
     private string _outputLaterName;
+
+    private Tensor _input;
+    private Tensor _output;
 
     private const int DATA_BUFFOR_SIZE = 25;
 
@@ -33,7 +37,7 @@ public class CurrentActionDataProvider : AbstractInputDataProvider<string>
     private void InitializeKerasModel()
     {
         _runtimeModel = ModelLoader.Load(_kerasModel);
-        _worker = WorkerFactory.CreateWorker(WorkerFactory.Type.Auto, _runtimeModel);
+        _worker = WorkerFactory.CreateWorker(WorkerFactory.Type.CSharpBurst, _runtimeModel);
         _outputLaterName = _runtimeModel.outputs[_runtimeModel.outputs.Count - 1];
     }
 
@@ -51,6 +55,7 @@ public class CurrentActionDataProvider : AbstractInputDataProvider<string>
         {
             PrepareRawData();
             _data = GetCurrentActionFromModel();
+            CleanTensors();
         }
     }
 
@@ -84,15 +89,14 @@ public class CurrentActionDataProvider : AbstractInputDataProvider<string>
 
     private float[] GetSampledEulerAngles(Quaternion quaternion)
     {
-        return new float [] { quaternion.x, quaternion.y, quaternion.z };
-        //return new float[] { quaternion.eulerAngles.x, quaternion.eulerAngles.y, quaternion.eulerAngles.z };
+        return new float[] { quaternion.eulerAngles.x, quaternion.eulerAngles.y, quaternion.eulerAngles.z };
     }
 
     private string GetCurrentActionFromModel()
     {
         var outputAction = CalculateActionType();
 
-        var lol = (ModelActionType)outputAction switch
+        return (ModelActionType)outputAction switch
         {
             ModelActionType.Walking => "Walking",
             ModelActionType.Laying => "Laying",
@@ -102,24 +106,28 @@ public class CurrentActionDataProvider : AbstractInputDataProvider<string>
             ModelActionType.Standing => "Standing",
             _ => "Unknown"
         };
-
-        Debug.Log(lol);
-        return lol;
     }
 
     private int CalculateActionType()
     {
-        TensorShape tensorShape = new TensorShape(1, 1, _rawData.Length, 1);
-        Tensor input = new Tensor(tensorShape, _rawData);
-        Tensor outputTensor = _worker.Execute(input).PeekOutput(_outputLaterName);
+        _input = new Tensor(_tensorShape, _rawData);
+        _output = _worker.Execute(_input).CopyOutput(_outputLaterName);
 
-        return outputTensor.ArgMax()[0];
+        return _output.ArgMax()[0];
+    }
+
+    private void CleanTensors()
+    {
+        _input.Dispose();
+        _output.Dispose();
+        _input = null;
+        _output = null;
     }
 
     private void OnDestroy()
     {
         _bufforedAccelometerData.Clear();
         _bufforedGyroscopeData.Clear();
-        _worker.Dispose();
+        _worker?.Dispose();
     }
 }

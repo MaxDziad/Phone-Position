@@ -258,51 +258,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52641378}
   m_CullTransparentMesh: 1
---- !u!1 &68128482
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 68128484}
-  - component: {fileID: 68128483}
-  m_Layer: 0
-  m_Name: Model
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &68128483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68128482}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbba9c78481f75145bb46d60d0256686, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _model: {fileID: 4900000, guid: d2ed8a8ded8427949a6ec1effb73bfde, type: 3}
---- !u!4 &68128484
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68128482}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 410.55698, y: 185.15805, z: -298.07758}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &68685417
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textSetter: {fileID: 524172499}
   _timeTreshold: 0.02
+  _timeUpdate: 1
   _gyroscopeDataProvider: {fileID: 2132207643}
   _accelerometerDataProvider: {fileID: 1905308263}
   _kerasModel: {fileID: 5022602860645237092, guid: d7be896e047255643910835160846693,
@@ -547,6 +503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textSetter: {fileID: 1110194049}
   _timeTreshold: 0.2
+  _timeUpdate: 1
   _gyroscopeDataProvider: {fileID: 2132207643}
   _accelerometerDataProvider: {fileID: 1905308263}
 --- !u!1 &429999608
@@ -2059,7 +2016,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textSetter: {fileID: 1806709942}
-  _timeTreshold: 0.02
+  _timeTreshold: 0.01
+  _timeUpdate: 0
 --- !u!114 &1905308264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,6 +2138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textSetter: {fileID: 540352565}
   _timeTreshold: 0.02
+  _timeUpdate: 0
 --- !u!114 &2132207644
 MonoBehaviour:
   m_ObjectHideFlags: 0

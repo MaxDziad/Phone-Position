@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Runtime.InputData
 {
-    public class GyroscopeDataProvider : AbstractInputDataProvider<Quaternion>
+    public class GyroscopeDataProvider : AbstractInputDataProvider<Vector3>
     {
         private bool _isGyroscopeEnabled;
 
@@ -27,15 +27,14 @@ namespace Runtime.InputData
 
         protected override string GetConvertedData()
         {
-            var correctData = GyroToUnity(_data);
-            return correctData.ToString();
+            return _data.ToString();
         }
 
         protected override void UpdateData()
         {
             if (_isGyroscopeEnabled)
             {
-                _data = Input.gyro.attitude;
+                _data = Input.gyro.userAcceleration;
             }
         }
 

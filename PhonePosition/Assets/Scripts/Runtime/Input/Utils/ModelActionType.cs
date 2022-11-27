@@ -4,8 +4,8 @@ namespace Runtime.Utils
     {
         Unknown,
         Walking,
-        Walking_Upstairs,
-        Walking_Downstairs,
+        WalkingUpstairs,
+        WalkingDownstairs,
         Sitting,
         Standing,
         Laying

@@ -11,7 +11,7 @@ namespace Runtime.InputData
         private float _timeTreshold = 0.01f;
 
         [SerializeField]
-        private bool _timeUpdate = true;
+        private bool _everyFrameUpdate = true;
 
         protected TData _data;
         private float _currentTime;
@@ -28,7 +28,7 @@ namespace Runtime.InputData
 
         public virtual void Update()
         {
-            if (!_timeUpdate || _currentTime > _timeTreshold)
+            if (!_everyFrameUpdate || _currentTime >= _timeTreshold)
             {
                 _currentTime = 0;
                 UpdateData();

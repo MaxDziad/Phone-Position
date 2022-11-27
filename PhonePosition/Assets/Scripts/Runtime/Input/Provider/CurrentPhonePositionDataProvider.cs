@@ -13,10 +13,10 @@ namespace Runtime.InputData
         private AccelometerDataProvider _accelerometerDataProvider;
 
         private Vector3 _accelometerData;
-        private Quaternion _gyroscopeData;
+        private Vector3 _gyroscopeData;
 
         private readonly List<Vector3> _lastFiveAccelometerDatas = new();
-        private readonly List<Quaternion> _lastFiveMeasurementGyroscope = new();
+        private readonly List<Vector3> _lastFiveMeasurementGyroscope = new();
 
         private const float ACCEPTABLE_MEASUREMENT_ERROR = 0.03f;
 

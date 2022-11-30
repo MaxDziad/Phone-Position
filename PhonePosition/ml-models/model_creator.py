@@ -1,7 +1,6 @@
 from keras import Sequential
 from keras.layers import Dense, Dropout
 from numpy import loadtxt, ndarray
-from tensorflow.python.keras.saving.save import load_model
 
 
 class ModelCreator:

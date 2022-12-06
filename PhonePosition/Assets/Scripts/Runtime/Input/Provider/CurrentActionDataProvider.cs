@@ -16,13 +16,11 @@ public class CurrentActionDataProvider : AbstractInputDataProvider<string>
     [SerializeField]
     private NNModel _kerasModel;
 
-    // private float[] _rawData = new float[150];
     private float[][] _rawData = new float[25][];
     private List<Vector3> _bufforedAccelometerData = new();
     private List<Vector3> _bufforedGyroscopeData = new();
     private ModelActionType _currentActionType = ModelActionType.Unknown;
 
-    // private readonly TensorShape _tensorShape = new TensorShape(1, 1, 150, 1);
     private readonly TensorShape _tensorShape = new TensorShape(1, 1, 6, 25);
 
     private Model _runtimeModel;
@@ -43,7 +41,7 @@ public class CurrentActionDataProvider : AbstractInputDataProvider<string>
     private void InitializeKerasModel()
     {
         _runtimeModel = ModelLoader.Load(_kerasModel);
-        _worker = WorkerFactory.CreateWorker(WorkerFactory.Type.CSharpBurst, _runtimeModel);
+        _worker = WorkerFactory.CreateWorker(WorkerFactory.Type.Auto, _runtimeModel);
         _outputLaterName = _runtimeModel.outputs[_runtimeModel.outputs.Count - 1];
     }
 
@@ -83,46 +81,24 @@ public class CurrentActionDataProvider : AbstractInputDataProvider<string>
 
     private void PrepareRawData()
     {
-        var rawData = new List<float>();
+        for (int i = 0; i < DATA_BUFFOR_SIZE; i++)
+        {
+            var sampleData = new float[6]
+            {
+                _bufforedAccelometerData[i].x,
+                _bufforedAccelometerData[i].y,
+                _bufforedAccelometerData[i].z,
+                _bufforedGyroscopeData[i].x,
+                _bufforedGyroscopeData[i].y,
+                _bufforedGyroscopeData[i].z,
 
-        _bufforedAccelometerData.ForEach(sample => rawData.AddRange(GetRawValuesFromVector(sample)));
-        _bufforedGyroscopeData.ForEach(sample => rawData.AddRange(GetRawValuesFromVector(sample)));
+            };
+
+            _rawData[i] = sampleData;
+        }
+
         _bufforedAccelometerData.Clear();
         _bufforedGyroscopeData.Clear();
-        
-        float[][] input = new float[25][] {
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-        };
-        _rawData = input;
-    }
-
-    private float[] GetRawValuesFromVector(Vector3 vector)
-    {
-        return new float[] { vector.x, vector.y, vector.z };
     }
 
     private string GetCurrentActionFromModel()

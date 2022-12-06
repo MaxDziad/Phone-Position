@@ -470,7 +470,7 @@ MonoBehaviour:
   _everyFrameUpdate: 0
   _gyroscopeDataProvider: {fileID: 2132207643}
   _accelerometerDataProvider: {fileID: 1905308263}
-  _kerasModel: {fileID: 5022602860645237092, guid: d7be896e047255643910835160846693,
+  _kerasModel: {fileID: 5022602860645237092, guid: a0bd01b62f3bdd843bed99a3541b9457,
     type: 3}
 --- !u!114 &68685420
 MonoBehaviour:

@@ -16,14 +16,12 @@ public class CurrentActionDataProvider : AbstractInputDataProvider<string>
     [SerializeField]
     private NNModel _kerasModel;
 
-    // private float[] _rawData = new float[150];
-    private float[][] _rawData = new float[25][];
+    private float[] _rawData = new float[150];
     private List<Vector3> _bufforedAccelometerData = new();
     private List<Vector3> _bufforedGyroscopeData = new();
     private ModelActionType _currentActionType = ModelActionType.Unknown;
 
-    // private readonly TensorShape _tensorShape = new TensorShape(1, 1, 150, 1);
-    private readonly TensorShape _tensorShape = new TensorShape(1, 1, 6, 25);
+    private readonly TensorShape _tensorShape = new TensorShape(1, 1, 150, 1);
 
     private Model _runtimeModel;
     private IWorker _worker;
@@ -89,35 +87,8 @@ public class CurrentActionDataProvider : AbstractInputDataProvider<string>
         _bufforedGyroscopeData.ForEach(sample => rawData.AddRange(GetRawValuesFromVector(sample)));
         _bufforedAccelometerData.Clear();
         _bufforedGyroscopeData.Clear();
-        
-        float[][] input = new float[25][] {
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-            new float[6]{1f, 2f, 3f, 4f, 5f, 6f},
-        };
-        _rawData = input;
+
+        _rawData = rawData.ToArray();
     }
 
     private float[] GetRawValuesFromVector(Vector3 vector)

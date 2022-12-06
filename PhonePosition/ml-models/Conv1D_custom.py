@@ -45,7 +45,7 @@ def load_dataset():
 # fit and evaluate a model
 def evaluate_model(trainX, trainy):
     verbose, epochs, batch_size = 0, 10, 32
-    n_timesteps, n_features, n_outputs = trainX.shape[1], trainX.shape[2], trainX.shape[2]
+    n_timesteps, n_features, n_outputs = 25, 6, 7 # Input -> (25 x 6), output -> 7 (6) classes
     model = Sequential()
     model.add(Conv1D(filters=64, kernel_size=3, activation='relu', input_shape=(n_timesteps, n_features)))
     model.add(Conv1D(filters=64, kernel_size=3, activation='relu'))

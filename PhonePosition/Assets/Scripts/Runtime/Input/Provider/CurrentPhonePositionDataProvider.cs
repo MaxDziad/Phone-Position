@@ -7,16 +7,11 @@ namespace Runtime.InputData
     public class CurrentPhonePositionDataProvider : AbstractInputDataProvider<string>
     {
         [SerializeField] 
-        private GyroscopeDataProvider _gyroscopeDataProvider;
-
-        [SerializeField] 
         private AccelometerDataProvider _accelerometerDataProvider;
 
         private Vector3 _accelometerData;
-        private Vector3 _gyroscopeData;
 
         private readonly List<Vector3> _lastFiveAccelometerDatas = new();
-        private readonly List<Vector3> _lastFiveMeasurementGyroscope = new();
 
         private const float ACCEPTABLE_MEASUREMENT_ERROR = 0.1f;
 
@@ -27,7 +22,6 @@ namespace Runtime.InputData
 
         protected override void UpdateData()
         {
-            _gyroscopeData = _gyroscopeDataProvider.Data;
             _accelometerData = _accelerometerDataProvider.Data;
             _data = GetCurrentPhonePosition();
         }
@@ -71,17 +65,11 @@ namespace Runtime.InputData
 
         private void AddRecentMeasurements()
         {
-            if (_lastFiveMeasurementGyroscope.Count == 5)
-            {
-                _lastFiveMeasurementGyroscope.RemoveAt(0);
-            }
-
             if (_lastFiveAccelometerDatas.Count == 5)
             {
                 _lastFiveAccelometerDatas.RemoveAt(0);
             }
 
-            _lastFiveMeasurementGyroscope.Add(_gyroscopeData);
             _lastFiveAccelometerDatas.Add(_accelometerData);
         }
 
@@ -101,7 +89,6 @@ namespace Runtime.InputData
         private void OnDestroy()
         {
             _lastFiveAccelometerDatas.Clear();
-            _lastFiveMeasurementGyroscope.Clear();
         }
     }
 }

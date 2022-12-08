@@ -18,7 +18,7 @@ namespace Runtime.InputData
         private readonly List<Vector3> _lastFiveAccelometerDatas = new();
         private readonly List<Vector3> _lastFiveMeasurementGyroscope = new();
 
-        private const float ACCEPTABLE_MEASUREMENT_ERROR = 0.03f;
+        private const float ACCEPTABLE_MEASUREMENT_ERROR = 0.1f;
 
         protected override string GetConvertedData()
         {
@@ -38,35 +38,35 @@ namespace Runtime.InputData
 
             if (CheckPositionCompatibility(Vector3.back))
             {
-                return "Your phone is laying still on the table with its screen facing up.";
+                return "laying still on the table with its screen facing up";
             }
 
             if (CheckPositionCompatibility(Vector3.forward))
             {
-                return "Your phone is laying still on the table with its screen facing down.";
+                return "laying still on the table with its screen facing down";
             }
 
             if (CheckPositionCompatibility(Vector3.down))
             {
-                return "Your phone is standing still on the lower edge.";
+                return "standing still on the lower edge";
             }
 
             if (CheckPositionCompatibility(Vector3.up))
             {
-                return "Your phone is standing still on the upper edge.";
+                return "standing still on the upper edge";
             }
 
             if (CheckPositionCompatibility(Vector3.right))
             {
-                return "Your phone is standing still on its right edge.";
+                return "standing still on its right edge";
             }
 
             if (CheckPositionCompatibility(Vector3.left))
             {
-                return "Your phone is standing still on its left edge.";
+                return "standing still on its left edge";
             }
 
-            return "Your phone is in an unknown state.";
+            return "unknown state";
         }
 
         private void AddRecentMeasurements()

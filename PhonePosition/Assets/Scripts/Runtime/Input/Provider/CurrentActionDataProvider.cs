@@ -113,13 +113,13 @@ public class CurrentActionDataProvider : AbstractInputDataProvider<string>
 
         return (ModelActionType)outputAction switch
         {
-            ModelActionType.Walking => "Walking",
-            ModelActionType.Laying => "Laying",
-            ModelActionType.Sitting => "Sitting",
-            ModelActionType.WalkingDownstairs => "Walking Downstairs",
-            ModelActionType.WalkingUpstairs => "Walking Upstairs",
-            ModelActionType.Standing => "Standing",
-            _ => "Unknown"
+            ModelActionType.Walking => "walking",
+            ModelActionType.Laying => "laying",
+            ModelActionType.Sitting => "sitting",
+            ModelActionType.WalkingDownstairs => "walking downstairs",
+            ModelActionType.WalkingUpstairs => "walking upstairs",
+            ModelActionType.Standing => "standing",
+            _ => "unknown"
         };
     }
 

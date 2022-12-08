@@ -34,7 +34,7 @@ namespace Runtime.InputData
         {
             if (_isGyroscopeEnabled)
             {
-                _data = Input.gyro.userAcceleration;
+                _data = Input.gyro.rotationRate;
             }
         }
 

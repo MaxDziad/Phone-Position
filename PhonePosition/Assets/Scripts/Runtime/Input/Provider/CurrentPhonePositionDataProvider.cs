@@ -46,22 +46,22 @@ namespace Runtime.InputData
                 return "laying still on the table with its screen facing down";
             }
 
-            if (CheckPositionCompatibility(Vector3.down))
+            if (CheckPositionCompatibility(Vector3.right))
             {
                 return "standing still on the lower edge";
             }
 
-            if (CheckPositionCompatibility(Vector3.up))
+            if (CheckPositionCompatibility(Vector3.left))
             {
                 return "standing still on the upper edge";
             }
 
-            if (CheckPositionCompatibility(Vector3.right))
+            if (CheckPositionCompatibility(Vector3.up))
             {
                 return "standing still on its right edge";
             }
 
-            if (CheckPositionCompatibility(Vector3.left))
+            if (CheckPositionCompatibility(Vector3.down))
             {
                 return "standing still on its left edge";
             }

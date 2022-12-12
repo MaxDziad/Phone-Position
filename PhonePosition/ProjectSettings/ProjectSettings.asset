@@ -22,7 +22,7 @@ PlayerSettings:
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 1
   m_SplashScreenLogoStyle: 1
-  m_SplashScreenDrawMode: 0
+  m_SplashScreenDrawMode: 1
   m_SplashScreenBackgroundAnimationZoom: 1
   m_SplashScreenLogoAnimationZoom: 1
   m_SplashScreenBackgroundLandscapeAspect: 1
@@ -39,9 +39,12 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
-  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 5658abdf799fe604d9ab86d4ef4c43eb,
-    type: 3}
+  m_SplashScreenLogos:
+  - logo: {fileID: 21300000, guid: 5658abdf799fe604d9ab86d4ef4c43eb, type: 3}
+    duration: 4
+  - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
+    duration: 3
+  m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
@@ -253,8 +256,8 @@ PlayerSettings:
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 1
   AndroidTargetDevices: 0
-  AndroidSplashScreenScale: 1
-  androidSplashScreen: {fileID: 2800000, guid: 5658abdf799fe604d9ab86d4ef4c43eb, type: 3}
+  AndroidSplashScreenScale: 2
+  androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
   AndroidBuildApkPerCpuArchitecture: 0
@@ -279,7 +282,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 41ad09508490bd949904bde47a9f61f2, type: 3}
+      m_Icon: {fileID: 2800000, guid: 58362ceed21232f4081f4f8b50203a25, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -292,39 +295,34 @@ PlayerSettings:
       m_Height: 192
       m_Kind: 1
       m_SubKind: 
-    - m_Textures:
-      - {fileID: 0}
+    - m_Textures: []
       m_Width: 144
       m_Height: 144
       m_Kind: 1
       m_SubKind: 
-    - m_Textures:
-      - {fileID: 0}
+    - m_Textures: []
       m_Width: 96
       m_Height: 96
       m_Kind: 1
       m_SubKind: 
-    - m_Textures:
-      - {fileID: 0}
+    - m_Textures: []
       m_Width: 72
       m_Height: 72
       m_Kind: 1
       m_SubKind: 
-    - m_Textures:
-      - {fileID: 0}
+    - m_Textures: []
       m_Width: 48
       m_Height: 48
       m_Kind: 1
       m_SubKind: 
-    - m_Textures:
-      - {fileID: 0}
+    - m_Textures: []
       m_Width: 36
       m_Height: 36
       m_Kind: 1
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 41ad09508490bd949904bde47a9f61f2, type: 3}
-      - {fileID: 2800000, guid: 41ad09508490bd949904bde47a9f61f2, type: 3}
+      - {fileID: 2800000, guid: 58362ceed21232f4081f4f8b50203a25, type: 3}
+      - {fileID: 2800000, guid: 58362ceed21232f4081f4f8b50203a25, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
@@ -355,7 +353,7 @@ PlayerSettings:
       m_Kind: 2
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 41ad09508490bd949904bde47a9f61f2, type: 3}
+      - {fileID: 2800000, guid: 58362ceed21232f4081f4f8b50203a25, type: 3}
       m_Width: 192
       m_Height: 192
       m_Kind: 0
